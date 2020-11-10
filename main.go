@@ -1,5 +1,22 @@
 package main
 
+import "os"
+
+func getEnv(key string, def string) string {
+	val, ok := os.LookupEnv(key)
+	if !ok {
+		return def
+	}
+	return val
+}
+
+
+func main() {
+	
+}
+
+package main
+
 import (
     "fmt"
     "net/http"
