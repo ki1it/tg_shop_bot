@@ -18,6 +18,7 @@ jobs:
       ## Run 😎
       - name: Drop previous
         run: docker rm --force bot
+        continue-on-error: true
 
       - name: Run
         run: docker run --publish 8000:8080 --detach --name bot bot:$(date +%s)
