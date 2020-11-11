@@ -21,4 +21,4 @@ jobs:
         continue-on-error: true
 
       - name: Run
-        run: docker run --publish 8000:8080 --detach --name bot bot:$(date +%s)
+        run: docker run --publish 8000:8080 --detach --name bot bot:$GITHUB_SHA
