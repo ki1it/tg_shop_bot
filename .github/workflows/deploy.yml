@@ -13,6 +13,8 @@ jobs:
 
       ## Builds our docker image! my-image-name:$GITHUB_SHA
       - name: Build the Docker image
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: docker build . --file Dockerfile --tag bot:$GITHUB_SHA
 
       ## Run 😎
