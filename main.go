@@ -40,7 +40,7 @@ func main() {
 		}
 		var update tgbotapi.Update
 		if err := json.Unmarshal(body, &update); err != nil {
-			gracefulExit(w, "body parse error")
+			gracefulExit(w, "body parse fucking error")
 			return
 		}
 
