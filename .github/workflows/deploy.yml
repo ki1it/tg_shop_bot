@@ -1,0 +1,23 @@
+name: Build and Run Docker Image
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-run:
+    runs-on: self-hosted
+    steps:
+      ## checks out our project source code
+      - uses: actions/checkout@v2
+
+      ## Builds our docker image! my-image-name:$(date +%s)
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag bot:$(date +%s)
+
+      ## Run 😎
+      - name: Drop previous
+        run: docker rm --force bot
+
+      - name: Run
+        run: docker run --publish 8000:8080 --detach --name bot bot:$(date +%s)
