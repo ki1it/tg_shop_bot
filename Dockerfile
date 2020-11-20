@@ -5,7 +5,7 @@ WORKDIR /app
 RUN go clean --modcache
 RUN go build -o main .
 CMD ["/app/main"]
-EXPOSE 9000
+EXPOSE 9990
 
 #FROM golang:1.15-alpine AS build
 ## Support CGO and SSL

@@ -19,4 +19,4 @@ services:
     container_name: bot
     restart: "always"
     ports:
-    - "9000"
+    - "9990"
