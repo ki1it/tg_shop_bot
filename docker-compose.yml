@@ -5,8 +5,6 @@ services:
     container_name: nginx
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/error.log:/etc/nginx/error_log.log
-      - ./nginx/cache/:/etc/nginx/cache
       - /etc/letsencrypt/:/etc/letsencrypt/
     ports:
       - 80:80
@@ -19,4 +17,4 @@ services:
     container_name: bot
     restart: "always"
     ports:
-    - "9990"
+    - "9990:9990"
