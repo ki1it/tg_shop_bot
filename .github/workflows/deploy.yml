@@ -11,16 +11,7 @@ jobs:
       ## checks out our project source code
       - uses: actions/checkout@v2
 
-      ## Builds our docker image! my-image-name:$GITHUB_SHA
-      - name: Build the Docker image
+      - name: Run App
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        run: docker build . --file Dockerfile --tag bot:$GITHUB_SHA
-
-      ## Run 😎
-      - name: Drop previous
-        run: docker rm --force bot
-        continue-on-error: true
-
-      - name: Run
-        run: docker run --publish 8000:8080 --detach --name bot bot:$GITHUB_SHA
+        run: docker-compose up
