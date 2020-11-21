@@ -16,5 +16,7 @@ services:
     build: "."
     container_name: bot
     restart: "always"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
     ports:
     - "9990:9990"
