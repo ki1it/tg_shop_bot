@@ -26,7 +26,9 @@ func gracefulExit(w http.ResponseWriter, text string) {
 
 func main() {
 
+	log.Println("App started")
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Got req", r.Body)
 		token, ok := os.LookupEnv("BOT_TOKEN")
 		if !ok {
 			gracefulExit(w, "no telegram bot token")
