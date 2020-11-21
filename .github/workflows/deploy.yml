@@ -14,4 +14,4 @@ jobs:
       - name: Run App
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        run: docker-compose up -d
+        run: docker-compose up -d --force-recreate
