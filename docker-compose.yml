@@ -11,6 +11,8 @@ services:
       - 443:443
     depends_on:
       - "bot"
+    tty: true
+    network_mode: host
 
   bot:
     build: "."
@@ -19,4 +21,6 @@ services:
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
     ports:
-    - "9990:9990"
+    - 9990:9990
+    tty: true
+    network_mode: host
