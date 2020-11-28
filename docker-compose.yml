@@ -1,5 +1,16 @@
 version: '3'
 services:
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${DB_PASS}
+    ports:
+    - 5432:5432
+    network_mode: host
+    volumes:
+      - postgresql:/var/lib/postgresql
   nginx:
     image: nginx:latest
     container_name: nginx
@@ -13,14 +24,18 @@ services:
       - "bot"
     tty: true
     network_mode: host
-
   bot:
     build: "."
     container_name: bot
     restart: "always"
     environment:
       - BOT_TOKEN=${BOT_TOKEN}
+      - DB_PASS=${DB_PASS}
     ports:
     - 9990:9990
     tty: true
     network_mode: host
+
+volumes:
+  postgresql:
+    driver: local
