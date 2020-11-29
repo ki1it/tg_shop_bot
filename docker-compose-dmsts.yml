@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx.dmsts.conf:/etc/nginx/nginx.conf
+      - /etc/letsencrypt/:/etc/letsencrypt/
+    ports:
+      - 80:80
+      - 443:443
+    depends_on:
+      - "bot"
+    tty: true
+    network_mode: host
+
+  bot:
+    build: "."
+    container_name: bot
+    restart: "always"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+    ports:
+    - 9990:9990
+    tty: true
+    network_mode: host
