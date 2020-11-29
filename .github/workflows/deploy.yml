@@ -15,4 +15,4 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           DB_PASS: ${{ secrets.DB_PASS }}
-        run: docker-compose up -d --force-recreate
+        run: docker-compose up -d --force-recreate --build
