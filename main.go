@@ -69,11 +69,22 @@ func main() {
 		log.Println("текст из сообщения", update.Message.Text)
 
 		log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+		//msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
 		// todo: looks like send message can be done via response on this webhook request
 		// but let's use this API for now
-		bot.Send(msg)
+		//bot.Send(msg)
 
+		if update.Message != nil {
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, update.Message.Text)
+
+			switch update.Message.Text {
+			case "/button":
+				msg.ReplyMarkup = numericKeyboard
+
+			}
+
+			bot.Send(msg)
+		}
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("OK"))
 	})
